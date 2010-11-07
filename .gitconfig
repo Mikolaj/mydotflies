@@ -1,0 +1,25 @@
+[user]
+	name = Mikolaj
+	email = mikolaj.konarski@gmail.com
+
+[color]
+	branch = always
+	diff = always
+	interactive = always
+	status = always
+	ui = always
+
+[core]
+	editor = emacs --no-desktop
+
+[branch]
+	autosetuprebase = always
+
+[github]
+	user = Mikolaj
+
+[apply]
+        whitespace = nowarn
+
+[push]
+        default = tracking
