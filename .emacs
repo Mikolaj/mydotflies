@@ -58,6 +58,7 @@ An item looks like (NAME . BUFFER)."
  '(show-paren-mode t nil (paren))
  '(standard-indent 4)
  '(tab-width 8)
+ '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
  '(tuareg-default-indent 2)
  '(tuareg-function-indent 0)
@@ -75,7 +76,7 @@ An item looks like (NAME . BUFFER)."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:inherit nil :stipple nil :background "gray90" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 146 :width ultra-expanded :foundry "unknown" :family "FreeMono")))))
 
 ;(load "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
 ;(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
@@ -155,15 +156,13 @@ An item looks like (NAME . BUFFER)."
 
 ;;; frames & desktop
 
-(setq initial-frame-alist
-      '((height . 61)))
+(setq initial-frame-alist '((height . 49)))
+(setq myframe (make-frame '((width . 80) (height . 49))))
+(modify-frame-parameters myframe '((top . 0) (left . 925)))
 
-(setq myframe (make-frame '((width . 80) (height . 61))))
-(modify-frame-parameters myframe '((top . 0) (left . 930)))
-
-;   (kill-buffer "*scratch*")
-;   (kill-buffer "*Messages*")
-
+;(kill-buffer "*scratch*")
+;(kill-buffer "*Messages*")
+;
 ;   (setq initial-frame-alist
 ;               '((height . 61) (width . 160)))
 
