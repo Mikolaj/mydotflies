@@ -129,4 +129,6 @@ unalias ll
 function ll () { ls -Al $@ | less -r; }
 export -f ll
 alias gut=git
-xset b off
+#xset b off
+
+export MOZ_GLX_IGNORE_BLACKLIST=1
