@@ -65,6 +65,7 @@ An item looks like (NAME . BUFFER)."
  '(ps-paper-type (quote a4))
  '(ps-print-color-p t)
  '(require-final-newline t)
+ '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position 2)
  '(shift-select-mode nil)
  '(show-paren-mode t nil (paren))
@@ -89,13 +90,12 @@ An item looks like (NAME . BUFFER)."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
-;; for HD
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus")))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus")))))
 ;; too big for 2 frames side by side in HD:
 ;;-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed")))))
-;; for full HD
+;; for full HD:
 ;; '(default ((t (:inherit nil :stipple nil :background "gray90" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 146 :width ultra-expanded :foundry "unknown" :family "FreeMono")))))
 
 ;(load "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
@@ -176,9 +176,10 @@ An item looks like (NAME . BUFFER)."
 
 ;;; frames & desktop
 
-;; for HD
-(setq initial-frame-alist '((height . 49) (top . 0) (left . 670)))
-(setq myframe (make-frame '((width . 80) (height . 49) (top . 0) (left . 0))))
+;; for HD:
+;; hack: vertical-scroll-bars needed to resize the extra frame
+(setq myframe (make-frame '((width . 80) (height . 49) (top . 0) (left . 0) (vertical-scroll-bars . t))))
+(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
 (modify-frame-parameters myframe '((top . 0) (left . 0)))
 ;; for full HD:
 ;(setq initial-frame-alist '((height . 49)))
@@ -194,3 +195,6 @@ An item looks like (NAME . BUFFER)."
 ;   (setq initial-frame-alist
 ;               '((top . 5399) (left . 4) (width . 80) (height . 51)))
 ;               '((font . "-adobe-courier-medium-r-normal--25-180-100-100-m-150-*")))
+
+(setq load-path (cons "~/repos/emacs-color-theme-solarized" load-path))
+(enable-theme 'solarized-dark)
