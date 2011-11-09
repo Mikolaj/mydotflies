@@ -8,11 +8,22 @@
 ; '(save-abbrevs (quote silently))
 ; '(fill-column 80)
 
+; a hack not to show modified buffers at the bottomt
+; TODO: this function does not seem to be ever invoked.
 (defun msb-sort-by-name-mikon (item1 item2)
   "Sort the items ITEM1 and ITEM2 by their `buffer-file-name'.
 An item looks like (NAME . BUFFER)."
   (string-lessp (buffer-file-name (cdr item1))
                 (buffer-file-name (cdr item2))))
+
+(defun msb-item-handler-mikon (buffer &optional maxbuf)
+  "Create one string item, concerning BUFFER, for the buffer menu.
+Don't add the star for modified buffers."
+  (let ((name (buffer-name))
+	(read-only (if buffer-read-only "%" " ")))
+    (format "%s %s" read-only name)))
+
+(setq msb-item-handling-function 'msb-item-handler-mikon)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -56,9 +67,9 @@ An item looks like (NAME . BUFFER)."
  '(mouse-wheel-mode t nil (mwheel))
  '(msb-display-most-recently-used 0)
  '(msb-files-by-directory t)
+ '(msb-item-sort-function (quote msb-sort-by-name-mikon))
  '(msb-max-menu-items 50)
  '(msb-mode t nil (msb))
- '(msb-most-recently-used-sort-key 111010)
  '(next-line-add-newlines nil)
  '(next-screen-context-lines 0)
  '(only-global-abbrevs t)
@@ -90,7 +101,8 @@ An item looks like (NAME . BUFFER)."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 137 :width normal :foundry "xos4" :family "terminus")))))
+;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus")))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus")))))
 ;; too big for 2 frames side by side in HD:
 ;;-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
@@ -174,12 +186,15 @@ An item looks like (NAME . BUFFER)."
  (global-set-key [M-delete]       'kill-word)
  (global-set-key [C-delete]       'kill-line)
 
+;;(setq x-super-keysym 'meta)
+
 ;;; frames & desktop
 
 ;; for HD:
 ;; hack: vertical-scroll-bars needed to resize the extra frame
-(setq myframe (make-frame '((width . 80) (height . 49) (top . 0) (left . 0) (vertical-scroll-bars . t))))
-(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
+(setq myframe (make-frame '((width . 81) (height . 49) (top . 0) (left . 0) (vertical-scroll-bars . t))))
+;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
+(setq initial-frame-alist '((width . 81) (height . 50) (top . 0) (left . 830)))
 (modify-frame-parameters myframe '((top . 0) (left . 0)))
 ;; for full HD:
 ;(setq initial-frame-alist '((height . 49)))
