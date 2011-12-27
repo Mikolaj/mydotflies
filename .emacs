@@ -70,7 +70,7 @@ Don't add the star for modified buffers."
  '(msb-item-sort-function (quote msb-sort-by-name-mikon))
  '(msb-max-menu-items 50)
  '(msb-mode t nil (msb))
- '(next-line-add-newlines nil)
+ '(next-line-add-newlines t)
  '(next-screen-context-lines 0)
  '(only-global-abbrevs t)
  '(ps-paper-type (quote a4))
@@ -192,9 +192,9 @@ Don't add the star for modified buffers."
 
 ;; for HD:
 ;; hack: vertical-scroll-bars needed to resize the extra frame
-(setq myframe (make-frame '((width . 81) (height . 49) (top . 0) (left . 0) (vertical-scroll-bars . t))))
+(setq myframe (make-frame '((width . 80) (height . 49) (top . 0) (left . 0) (vertical-scroll-bars . t))))
 ;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
-(setq initial-frame-alist '((width . 81) (height . 50) (top . 0) (left . 830)))
+(setq initial-frame-alist '((width . 80) (height . 50) (top . 0) (left . 830)))
 (modify-frame-parameters myframe '((top . 0) (left . 0)))
 ;; for full HD:
 ;(setq initial-frame-alist '((height . 49)))
