@@ -10,7 +10,7 @@
 	ui = always
 
 [core]
-	editor = emacs --no-desktop
+	editor = emacs -Q
 
 [branch]
 	autosetuprebase = always
