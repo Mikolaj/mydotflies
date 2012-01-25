@@ -53,7 +53,7 @@ Don't add the star for modified buffers."
  '(erc-save-queries-on-quit nil)
  '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
- '(fringe-mode (quote (nil . 0)) nil (fringe))
+ '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message "mikon")
@@ -101,15 +101,15 @@ Don't add the star for modified buffers."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 165 :width normal :foundry "xos4" :family "terminus"))))
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus")))))
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 165 :width normal :foundry "xos4" :family "terminus")))))
+;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus"))))
+;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus"))))
 ;; too big for 2 frames side by side in HD:
 ;;-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed")))))
+;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed"))))
 ;; for full HD:
-;; '(default ((t (:inherit nil :stipple nil :background "gray90" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 146 :width ultra-expanded :foundry "u )
-)
+;; '(default ((t (:inherit nil :stipple nil :background "gray90" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 146 :width ultra-expanded :foundry "u
+
 
 ;(load "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
 ;(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
@@ -191,16 +191,11 @@ Don't add the star for modified buffers."
 
 ;;; frames & desktop
 
-;; for HD:
-;; hack: vertical-scroll-bars needed to resize the extra frame
 (setq myframe (make-frame '((width . 79) (height . 63))))
 (setq myframe (make-frame '((width . 79) (height . 63))))
 ;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
-(setq initial-frame-alist '((width . 79) (height . 65)))
+(setq initial-frame-alist '((width . 79) (height . 63)))
 ;;(modify-frame-parameters myframe '((top . 0) (left . 0)))
-;; for full HD:
-;(setq initial-frame-alist '((height . 49)))
-;(setq myframe (make-frame '((width . 80) (height . 49))))
 ;(modify-frame-parameters myframe '((top . 0) (left . 925)))
 
 ;(kill-buffer "*scratch*")

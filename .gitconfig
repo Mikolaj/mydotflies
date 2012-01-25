@@ -11,6 +11,7 @@
 
 [core]
 	editor = emacs -Q
+	excludesfile = /home/mikolaj/.gitignore_global
 
 [branch]
 	autosetuprebase = always
