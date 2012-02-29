@@ -53,7 +53,7 @@ Don't add the star for modified buffers."
  '(erc-save-queries-on-quit nil)
  '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
- '(fringe-mode (quote (1 . 1)) nil (fringe))
+ '(fringe-mode (quote (3 . 3)) nil (fringe))
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message "mikon")
@@ -191,10 +191,10 @@ Don't add the star for modified buffers."
 
 ;;; frames & desktop
 
-(setq myframe (make-frame '((width . 79) (height . 63))))
-(setq myframe (make-frame '((width . 79) (height . 63))))
+(setq myframe (make-frame '((width . 79) (height . 64))))
+(setq myframe (make-frame '((width . 79) (height . 64))))
 ;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
-(setq initial-frame-alist '((width . 79) (height . 63)))
+(setq initial-frame-alist '((width . 79) (height . 64)))
 ;;(modify-frame-parameters myframe '((top . 0) (left . 0)))
 ;(modify-frame-parameters myframe '((top . 0) (left . 925)))
 
@@ -208,5 +208,5 @@ Don't add the star for modified buffers."
 ;               '((top . 5399) (left . 4) (width . 80) (height . 51)))
 ;               '((font . "-adobe-courier-medium-r-normal--25-180-100-100-m-150-*")))
 
-(setq load-path (cons "~/repos/emacs-color-theme-solarized" load-path))
+(setq load-path (cons "~/r/emacs-color-theme-solarized" load-path))
 (enable-theme 'solarized-dark)
