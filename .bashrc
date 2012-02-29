@@ -101,7 +101,7 @@ fi
 export HISTFILESIZE=5000000
 export HISTSIZE=5000000
 #export HTTP_PROXY=http://w3cache.aster.pl:8080
-#export PS1='\w\$ ' #"\w\\$ "
+export PS1='\[\e]0;\w\a\]\w\$ '  # gnome terminal tab title
 #export LANG="en_US"
 export PAGER="less"
 export EDITOR="emacs"
