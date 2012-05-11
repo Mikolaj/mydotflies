@@ -210,3 +210,15 @@ Don't add the star for modified buffers."
 
 (setq load-path (cons "~/r/emacs-color-theme-solarized" load-path))
 (enable-theme 'solarized-dark)
+
+
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (buffer-file-name) (not (buffer-modified-p)))
+        (revert-buffer t t t) )))
+  (message "Refreshed open files.") )
+
+(setq haskell-doc-show-reserved nil)
