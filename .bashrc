@@ -59,7 +59,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\w\a\]${debian_chroot:+($debian_chroot)}\w\$ "
     ;;
 *)
     ;;
@@ -101,7 +101,6 @@ fi
 export HISTFILESIZE=5000000
 export HISTSIZE=5000000
 #export HTTP_PROXY=http://w3cache.aster.pl:8080
-export PS1='\[\e]0;\w\a\]\w\$ '  # gnome terminal tab title
 #export LANG="en_US"
 export PAGER="less"
 export EDITOR="emacs"
