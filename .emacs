@@ -54,6 +54,12 @@ Don't add the star for modified buffers."
  '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
  '(fringe-mode (quote (3 . 3)) nil (fringe))
+ '(haskell-indentation-where-post-offset 1)
+ '(haskell-interactive-mode-hide-multi-line-errors nil)
+ '(haskell-process-prompt-restart-on-cabal-change nil)
+ '(haskell-process-suggest-remove-import-lines nil)
+ '(haskell-stylish-on-save t)
+ '(haskell-tags-on-save t)
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message "mikon")
@@ -95,13 +101,15 @@ Don't add the star for modified buffers."
  '(uniquify-buffer-name-style nil nil (uniquify))
  '(use-file-dialog nil)
  '(user-mail-address "mikolaj.konarski@gmail.com")
+ '(warning-minimum-level :debug)
+ '(warning-minimum-log-level :debug)
  '(whitespace-style (quote (trailing space-before-tab::space empty))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 165 :width normal :foundry "xos4" :family "terminus")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 161 :width normal :foundry "xos4" :family "terminus")))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus"))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus"))))
 ;; too big for 2 frames side by side in HD:
@@ -187,7 +195,7 @@ Don't add the star for modified buffers."
  (global-set-key [M-delete]       'kill-word)
  (global-set-key [C-delete]       'kill-line)
 
-;;(setq x-super-keysym 'meta)
+(setq x-super-keysym 'meta)
 
 ;;; frames & desktop
 
@@ -221,4 +229,48 @@ Don't add the star for modified buffers."
         (revert-buffer t t t) )))
   (message "Refreshed open files.") )
 
+(load "~/r/haskell-mode/haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
 (setq haskell-doc-show-reserved nil)
+
+(add-hook 'haskell-mode-hook 'haskell-hook)
+
+(defun haskell-hook ()
+
+  ;; Build the Cabal project.
+  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  ;; Interactively choose the Cabal command to run.
+  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+
+  ;; Get the type and info of the symbol at point, print it in the
+  ;; message buffer.
+  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+
+  ;; Jump to the imports. Keep tapping to jump between import
+  ;; groups. C-u f8 to jump back again.
+  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+
+  ;; ;; Indent the below lines on columns after the current column.
+  ;; (define-key haskell-mode-map (kbd "C-<right>")
+  ;;   (lambda ()
+  ;;     (interactive)
+  ;;     (haskell-move-nested 1)))
+  ;; ;; Same as above but backwards.
+  ;; (define-key haskell-mode-map (kbd "C-<left>")
+  ;;   (lambda ()
+  ;;     (interactive)
+  ;;     (haskell-move-nested -1))))
+
+  ;; Jump to the definition of the current symbol.
+  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
+
+  (define-key haskell-mode-map [f5] 'haskell-sort-imports)
+
+)
+
+(when (require 'browse-kill-ring nil 'noerror)
+  (browse-kill-ring-default-keybindings))
