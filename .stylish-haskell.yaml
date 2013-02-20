@@ -78,3 +78,6 @@ language_extensions:
     - RecordWildCards
     - NamedFieldPuns
     - DoAndIfThenElse
+    - PatternGuards
+    - MultiParamTypeClasses
+    - FlexibleContexts
