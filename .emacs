@@ -26,10 +26,10 @@ Don't add the star for modified buffers."
 (setq msb-item-handling-function 'msb-item-handler-mikon)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(before-save-hook (quote (whitespace-cleanup)))
  '(c-basic-offset 4)
  '(c-default-style (quote ((c-mode . "bsd") (c++-mode . "bsd") (objc-mode . "bsd") (java-mode . "java") (awk-mode . "awk") (other . "bsd"))))
@@ -37,6 +37,7 @@ Don't add the star for modified buffers."
  '(column-number-mode t)
  '(compilation-ask-about-save nil)
  '(compilation-error-screen-columns nil)
+ '(custom-theme-load-path (\` (custom-theme-directory t "~/r/emacs-color-theme-solarized")))
  '(desktop-save t)
  '(desktop-save-mode t)
  '(erc-enable-logging t)
@@ -54,20 +55,23 @@ Don't add the star for modified buffers."
  '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
  '(fringe-mode (quote (3 . 3)) nil (fringe))
+ '(haskell-font-lock-haddock t)
  '(haskell-indentation-where-post-offset 1)
- '(haskell-interactive-mode-hide-multi-line-errors nil)
+ '(haskell-interactive-mode-hide-multi-line-errors t)
  '(haskell-process-prompt-restart-on-cabal-change nil)
  '(haskell-process-suggest-remove-import-lines nil)
+ '(haskell-process-type (quote cabal-dev))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
  '(indent-tabs-mode nil)
  '(indicate-empty-lines t)
  '(inhibit-startup-echo-area-message "mikon")
  '(inhibit-startup-screen t)
- '(kill-ring-max 1000)
+ '(kill-ring-max 10000)
  '(make-backup-files nil)
  '(message-log-max t)
  '(mouse-buffer-menu-mode-mult 1)
+ '(mouse-drag-copy-region t)
  '(mouse-scroll-delay 0.02)
  '(mouse-scroll-min-lines 1)
  '(mouse-wheel-mode t nil (mwheel))
@@ -84,6 +88,7 @@ Don't add the star for modified buffers."
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position 2)
+ '(select-active-regions nil)
  '(shift-select-mode nil)
  '(show-paren-mode t nil (paren))
  '(standard-indent 4)
@@ -103,12 +108,14 @@ Don't add the star for modified buffers."
  '(user-mail-address "mikolaj.konarski@gmail.com")
  '(warning-minimum-level :debug)
  '(warning-minimum-log-level :debug)
- '(whitespace-style (quote (trailing space-before-tab::space empty))))
+ '(whitespace-style (quote (trailing space-before-tab::space empty)))
+ '(x-select-enable-clipboard nil)
+ '(x-select-enable-primary t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 161 :width normal :foundry "xos4" :family "terminus")))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus"))))
 ;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus"))))
@@ -186,11 +193,6 @@ Don't add the star for modified buffers."
 (global-set-key [end] '(lambda () "."
                          (interactive) (end-of-buffer)))
 
-(global-unset-key [backspace])
-(global-set-key [backspace] 'backward-delete-char-untabify)
-(global-unset-key [delete])
-(global-set-key [delete] 'delete-char)
-
 ;(global-set-key [C-backspace] 'backward-kill-line)
  (global-set-key [M-delete]       'kill-word)
  (global-set-key [C-delete]       'kill-line)
@@ -199,8 +201,8 @@ Don't add the star for modified buffers."
 
 ;;; frames & desktop
 
-(setq myframe (make-frame '((width . 79) (height . 64))))
-(setq myframe (make-frame '((width . 79) (height . 64))))
+(setq myframe (make-frame '((width . 79) (height . 63))))
+(setq myframe (make-frame '((width . 79) (height . 63))))
 ;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
 (setq initial-frame-alist '((width . 79) (height . 64)))
 ;;(modify-frame-parameters myframe '((top . 0) (left . 0)))
@@ -216,9 +218,15 @@ Don't add the star for modified buffers."
 ;               '((top . 5399) (left . 4) (width . 80) (height . 51)))
 ;               '((font . "-adobe-courier-medium-r-normal--25-180-100-100-m-150-*")))
 
-(setq load-path (cons "~/r/emacs-color-theme-solarized" load-path))
-(enable-theme 'solarized-dark)
+(load-theme 'solarized-dark t)
 
+(defun switch-to-previous-buffer ()
+      (interactive)
+      (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(global-set-key [f1] 'switch-to-previous-buffer)
+
+(global-set-key [mouse-2] 'mouse-yank-at-click)
 
 (defun revert-all-buffers ()
   "Refreshes all open buffers from their respective files."
