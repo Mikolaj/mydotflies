@@ -81,3 +81,11 @@ language_extensions:
     - PatternGuards
     - MultiParamTypeClasses
     - FlexibleContexts
+    - TypeFamilies
+    - CPP
+    - GADTs
+    - StandaloneDeriving
+    - DataKinds
+    - KindSignatures
+    - ExistentialQuantification
+    - UnboxedTuples

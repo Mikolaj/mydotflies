@@ -110,7 +110,7 @@ export COQBIN="/home/mikolaj/waste/coq/coq-8.2pl1/bin/"
 #export PATH=/home/mikolaj/waste/coq/coq-8.2pl1/bin:/home/mikolaj/.cabal/bin:/home/mikolaj/bin:$PATH
 # the line below omits /usr/local/*bin
 #export PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export PATH=/home/mikolaj/.cabal/bin:/mikolaj/.cabal/bin:/home/mikolaj/bin:"${PATH}"
+export PATH=/home/mikolaj/r/arcanist/bin:/home/mikolaj/.cabal/bin:/mikolaj/.cabal/bin:/home/mikolaj/bin:/home/mikolaj/local/bin:/mikolaj/Downloads/cmake-3.1.3-Linux-x86_64/bin:"${PATH}"
 export MLSTATELIBS=/home/mikolaj/mlstatelibs
 export OCAMLRUNPARAM=b
 export QML2LLVMDIR=/home/mikolaj/qml2llvm

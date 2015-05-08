@@ -25,6 +25,8 @@ Don't add the star for modified buffers."
 
 (setq msb-item-handling-function 'msb-item-handler-mikon)
 
+(add-to-list 'load-path "~/r/color-theme-sanityinc-tomorrow")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,7 +39,10 @@ Don't add the star for modified buffers."
  '(column-number-mode t)
  '(compilation-ask-about-save nil)
  '(compilation-error-screen-columns nil)
- '(custom-theme-load-path (\` (custom-theme-directory t "~/r/emacs-color-theme-solarized")))
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
+ '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+ '(custom-theme-load-path (\` (custom-theme-directory t "~/r/color-theme-sanityinc-tomorrow")))
+ '(desktop-path (quote ("." "~/.emacs.d/" "~")))
  '(desktop-save t)
  '(desktop-save-mode t)
  '(erc-enable-logging t)
@@ -54,13 +59,12 @@ Don't add the star for modified buffers."
  '(erc-save-queries-on-quit nil)
  '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
- '(fringe-mode (quote (3 . 3)) nil (fringe))
+ '(fringe-mode nil nil (fringe))
  '(haskell-font-lock-haddock t)
  '(haskell-indentation-where-post-offset 1)
  '(haskell-interactive-mode-hide-multi-line-errors t)
  '(haskell-process-prompt-restart-on-cabal-change nil)
  '(haskell-process-suggest-remove-import-lines nil)
- '(haskell-process-type (quote cabal-dev))
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
  '(indent-tabs-mode nil)
@@ -88,11 +92,12 @@ Don't add the star for modified buffers."
  '(require-final-newline t)
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position 2)
+ '(search-whitespace-regexp nil)
  '(select-active-regions nil)
  '(shift-select-mode nil)
  '(show-paren-mode t nil (paren))
  '(standard-indent 4)
- '(tab-width 8)
+ '(tab-width 4)
  '(tool-bar-mode nil)
  '(transient-mark-mode nil)
  '(truncate-partial-width-windows nil)
@@ -201,10 +206,10 @@ Don't add the star for modified buffers."
 
 ;;; frames & desktop
 
-(setq myframe (make-frame '((width . 79) (height . 63))))
-(setq myframe (make-frame '((width . 79) (height . 63))))
+(setq myframe (make-frame '((width . 80) (height . 63))))
+(setq myframe (make-frame '((width . 73) (height . 63))))
 ;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
-(setq initial-frame-alist '((width . 79) (height . 64)))
+(setq initial-frame-alist '((width . 80) (height . 64)))
 ;;(modify-frame-parameters myframe '((top . 0) (left . 0)))
 ;(modify-frame-parameters myframe '((top . 0) (left . 925)))
 
@@ -218,7 +223,7 @@ Don't add the star for modified buffers."
 ;               '((top . 5399) (left . 4) (width . 80) (height . 51)))
 ;               '((font . "-adobe-courier-medium-r-normal--25-180-100-100-m-150-*")))
 
-(load-theme 'solarized-dark t)
+;(load-theme 'solarized-dark t)
 
 (defun switch-to-previous-buffer ()
       (interactive)
@@ -237,7 +242,15 @@ Don't add the star for modified buffers."
         (revert-buffer t t t) )))
   (message "Refreshed open files.") )
 
-(load "~/r/haskell-mode/haskell-site-file")
+(add-to-list 'load-path "~/r/csharp-mode/")
+   (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+   (setq auto-mode-alist
+      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+
+
+;;(load "~/r/haskell-mode/haskell-site-file")
+(add-to-list 'load-path "~/r/haskell-mode/")
+(require 'haskell-mode-autoloads)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
