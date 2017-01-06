@@ -1,26 +1,8 @@
-; I've forgotten what most variables do and they do different things now, too
-; TODO: investigate, remove some, see what happens
-
-;(require 'tex-site)
-;(setq TeX-command-list nil)
-;(require 'chktex)
-; '(show-trailing-whitespace t)
-; '(save-abbrevs (quote silently))
-; '(fill-column 80)
-
-; a hack not to show modified buffers at the bottomt
-; TODO: this function does not seem to be ever invoked.
-(defun msb-sort-by-name-mikon (item1 item2)
-  "Sort the items ITEM1 and ITEM2 by their `buffer-file-name'.
-An item looks like (NAME . BUFFER)."
-  (string-lessp (buffer-file-name (cdr item1))
-                (buffer-file-name (cdr item2))))
-
 (defun msb-item-handler-mikon (buffer &optional maxbuf)
   "Create one string item, concerning BUFFER, for the buffer menu.
 Don't add the star for modified buffers."
   (let ((name (buffer-name))
-	(read-only (if buffer-read-only "%" " ")))
+       (read-only (if buffer-read-only "%" " ")))
     (format "%s %s" read-only name)))
 
 (setq msb-item-handling-function 'msb-item-handler-mikon)
@@ -33,33 +15,21 @@ Don't add the star for modified buffers."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(before-save-hook (quote (whitespace-cleanup)))
- '(c-basic-offset 4)
- '(c-default-style (quote ((c-mode . "bsd") (c++-mode . "bsd") (objc-mode . "bsd") (java-mode . "java") (awk-mode . "awk") (other . "bsd"))))
+ '(blink-cursor-mode nil)
  '(case-fold-search nil)
  '(column-number-mode t)
- '(compilation-ask-about-save nil)
- '(compilation-error-screen-columns nil)
  '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
- '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
- '(custom-theme-load-path (\` (custom-theme-directory t "~/r/color-theme-sanityinc-tomorrow")))
+ '(custom-safe-themes
+   (quote
+    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+ '(custom-theme-load-path
+   (\`
+    (custom-theme-directory t "~/r/color-theme-sanityinc-tomorrow")))
  '(desktop-path (quote ("." "~/.emacs.d/" "~")))
- '(desktop-save t)
+ '(desktop-save (quote if-exists))
  '(desktop-save-mode t)
- '(erc-enable-logging t)
- '(erc-log-file-coding-system (quote utf-8))
- '(erc-log-write-after-insert t)
- '(erc-log-write-after-send t)
- '(erc-modules (quote (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands readonly ring services stamp track)))
- '(erc-part-reason (quote erc-part-reason-various))
- '(erc-part-reason-various-alist (quote (("^$" "type error"))))
- '(erc-prompt-for-nickserv-password nil)
- '(erc-quit-reason (quote erc-quit-reason-various))
- '(erc-quit-reason-various-alist (quote (("^$" "type error"))))
- '(erc-save-buffer-on-part nil)
- '(erc-save-queries-on-quit nil)
- '(erc-services-mode t)
  '(font-lock-maximum-size 99999999)
- '(fringe-mode nil nil (fringe))
+ '(fringe-mode (quote (1 . 1)) nil (fringe))
  '(haskell-font-lock-haddock t)
  '(haskell-indentation-where-post-offset 1)
  '(haskell-interactive-mode-hide-multi-line-errors t)
@@ -68,123 +38,35 @@ Don't add the star for modified buffers."
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
  '(indent-tabs-mode nil)
- '(indicate-empty-lines t)
- '(inhibit-startup-echo-area-message "mikon")
+ '(indicate-buffer-boundaries (quote right))
  '(inhibit-startup-screen t)
- '(kill-ring-max 10000)
+ '(kill-ring-max 200000)
  '(make-backup-files nil)
  '(message-log-max t)
  '(mouse-buffer-menu-mode-mult 1)
- '(mouse-drag-copy-region t)
- '(mouse-scroll-delay 0.02)
- '(mouse-scroll-min-lines 1)
- '(mouse-wheel-mode t nil (mwheel))
  '(msb-display-most-recently-used 0)
  '(msb-files-by-directory t)
- '(msb-item-sort-function (quote msb-sort-by-name-mikon))
  '(msb-max-menu-items 50)
  '(msb-mode t nil (msb))
- '(next-line-add-newlines t)
  '(next-screen-context-lines 0)
- '(only-global-abbrevs t)
- '(ps-paper-type (quote a4))
- '(ps-print-color-p t)
  '(require-final-newline t)
+ '(save-place t nil (saveplace))
  '(scroll-bar-mode nil)
- '(scroll-preserve-screen-position 2)
- '(search-whitespace-regexp nil)
- '(select-active-regions nil)
- '(shift-select-mode nil)
- '(show-paren-mode t nil (paren))
- '(standard-indent 4)
- '(tab-width 4)
+ '(show-paren-mode t)
+ '(size-indication-mode t)
  '(tool-bar-mode nil)
- '(transient-mark-mode nil)
- '(truncate-partial-width-windows nil)
- '(tuareg-default-indent 2)
- '(tuareg-function-indent 0)
- '(tuareg-in-indent 0)
- '(tuareg-let-always-indent t)
- '(tuareg-with-indent 0)
+ '(tool-bar-position (quote right))
  '(undo-limit 200000)
  '(undo-strong-limit 300000)
- '(uniquify-buffer-name-style nil nil (uniquify))
  '(use-file-dialog nil)
- '(user-mail-address "mikolaj.konarski@gmail.com")
- '(warning-minimum-level :debug)
- '(warning-minimum-log-level :debug)
- '(whitespace-style (quote (trailing space-before-tab::space empty)))
- '(x-select-enable-clipboard nil)
- '(x-select-enable-primary t))
+ '(whitespace-style (quote (trailing space-before-tab::space empty))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 161 :width normal :foundry "xos4" :family "terminus")))))
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 105 :width normal :foundry "xos4" :family "terminus"))))
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "terminus"))))
-;; too big for 2 frames side by side in HD:
-;;-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
-;; '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed"))))
-;; for full HD:
-;; '(default ((t (:inherit nil :stipple nil :background "gray90" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 146 :width ultra-expanded :foundry "u
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 98 :width normal)))))
 
-
-;(load "/usr/share/emacs/site-lisp/proofgeneral/generic/proof-site.el")
-;(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
-;        (autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
-
-(setq compile-command "make ")
-
-;;; modes for files
-
-(setq auto-mode-alist
-      (append '(("\\.ocamlinit$" . tuareg-mode)
-                ("\\.ml$" . tuareg-mode)
-                ("\\.mli$" . tuareg-mode)
-                ("\\.mll$" . tuareg-mode)
-                ("\\.mly$" . tuareg-mode)
-                ("\\.eml$" . sml-mode)
-                ("\\.sml$" . sml-mode)
-                ("\\.sig$" . sml-mode)
-                ("\\.ML$" . sml-mode)
-                ("\\.ufo$" . c-mode)) auto-mode-alist))
-
-(put 'erase-buffer 'disabled nil)
-
-;;; sml-mode
-
-(autoload 'sml-mode "sml-mode" "Major mode for editing Standard ML." t)
-(autoload 'sml "sml-proc" "Run an inferior ML process." t)
-(autoload 'sml-mosml "sml-mosml" "Set up and run Moscow ML." t)
-(autoload 'sml-poly-ml "sml-poly-ml" "Set up and run Poly/ML." t)
-
-(setq sml-mode-hook
-      '(lambda() "SML mode hacks" (setq sml-case-indent t)))
-
-(setq sml-load-hook
-      '(lambda() "Fontify SML." (require 'sml-font)))
-
-(setq sml-mode-info "/usr/local/share/emacs/site-lisp/sml-mode.info")
-
-;;; dule-font
-;;(load "~/.dule-font")
-;;(load "caml-font")
-
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-;; (setq TeX-auto-untabify nil)
-;; (setq TeX-open-quote "\"\`")
-(setq TeX-save-query nil)
-
-(setq LaTeX-section-hook
-      '(LaTeX-section-heading
-        LaTeX-section-title
-        ;;LaTeX-section-toc
-        LaTeX-section-section
-        LaTeX-section-label))
 
 (global-set-key [C-right]  'end-of-line)
 (global-set-key [C-left]   'beginning-of-line)
@@ -198,40 +80,10 @@ Don't add the star for modified buffers."
 (global-set-key [end] '(lambda () "."
                          (interactive) (end-of-buffer)))
 
-;(global-set-key [C-backspace] 'backward-kill-line)
- (global-set-key [M-delete]       'kill-word)
- (global-set-key [C-delete]       'kill-line)
-
 (setq x-super-keysym 'meta)
 
-;;; frames & desktop
-
-(setq myframe (make-frame '((width . 80) (height . 63))))
-(setq myframe (make-frame '((width . 73) (height . 63))))
-;;(setq initial-frame-alist '((height . 49) (top . 0) (left . 655)))
-(setq initial-frame-alist '((width . 80) (height . 64)))
-;;(modify-frame-parameters myframe '((top . 0) (left . 0)))
-;(modify-frame-parameters myframe '((top . 0) (left . 925)))
-
-;(kill-buffer "*scratch*")
-;(kill-buffer "*Messages*")
-;
-;   (setq initial-frame-alist
-;               '((height . 61) (width . 160)))
-
-;   (setq initial-frame-alist
-;               '((top . 5399) (left . 4) (width . 80) (height . 51)))
-;               '((font . "-adobe-courier-medium-r-normal--25-180-100-100-m-150-*")))
-
-;(load-theme 'solarized-dark t)
-
-(defun switch-to-previous-buffer ()
-      (interactive)
-      (switch-to-buffer (other-buffer (current-buffer) 1)))
-
-(global-set-key [f1] 'switch-to-previous-buffer)
-
-(global-set-key [mouse-2] 'mouse-yank-at-click)
+(global-set-key [f11] 'previous-buffer)
+(global-set-key [f12] 'next-buffer)
 
 (defun revert-all-buffers ()
   "Refreshes all open buffers from their respective files."
@@ -242,13 +94,7 @@ Don't add the star for modified buffers."
         (revert-buffer t t t) )))
   (message "Refreshed open files.") )
 
-(add-to-list 'load-path "~/r/csharp-mode/")
-   (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-   (setq auto-mode-alist
-      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
 
-
-;;(load "~/r/haskell-mode/haskell-site-file")
 (add-to-list 'load-path "~/r/haskell-mode/")
 (require 'haskell-mode-autoloads)
 
@@ -292,6 +138,3 @@ Don't add the star for modified buffers."
   (define-key haskell-mode-map [f5] 'haskell-sort-imports)
 
 )
-
-(when (require 'browse-kill-ring nil 'noerror)
-  (browse-kill-ring-default-keybindings))

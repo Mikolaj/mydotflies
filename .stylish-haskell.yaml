@@ -89,3 +89,5 @@ language_extensions:
     - KindSignatures
     - ExistentialQuantification
     - UnboxedTuples
+    - MultiWayIf
+    - MagicHash
