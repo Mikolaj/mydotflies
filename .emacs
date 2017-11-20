@@ -37,6 +37,7 @@ Don't add the star for modified buffers."
  '(haskell-process-suggest-remove-import-lines nil)
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
+ '(hs-checkers-replace-with-suggestions nil)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote right))
  '(inhibit-startup-screen t)
