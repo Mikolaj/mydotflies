@@ -122,7 +122,7 @@ export HISTSIZE=5000000
 export PAGER="less"
 export EDITOR="emacs"
 #export PATH=/home/mikolaj/r/arcanist/bin:/home/mikolaj/.cabal/bin:/mikolaj/.cabal/bin:/home/mikolaj/bin:/home/mikolaj/local/bin:/mikolaj/Downloads/cmake-3.1.3-Linux-x86_64/bin:"${PATH}"
-export PATH=/home/mikolaj/r/arcanist/bin:/home/mikolaj/.cabal/bin:/home/mikolaj/local/bin:"${PATH}"
+export PATH=/home/mikolaj/r/arcanist/bin:/home/mikolaj/.cabal/bin:/home/mikolaj/local/bin:/home/mikolaj/r/ghcjs/.cabal-sandbox/bin:"${PATH}"
 #alias less='less -M -i'
 alias ll=ls
 unalias ll
@@ -131,3 +131,4 @@ export -f ll
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
