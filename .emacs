@@ -140,6 +140,7 @@ Don't add the star for modified buffers."
 
   ;; Jump to the definition of the current symbol.
   (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
+  (define-key haskell-mode-map (kbd "≥") 'haskell-mode-tag-find)
 
   (define-key haskell-mode-map [f5] 'haskell-sort-imports)
 
